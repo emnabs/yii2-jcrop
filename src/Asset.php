@@ -6,7 +6,7 @@ use yii\web\AssetBundle;
 
 class Asset extends AssetBundle {
 
-    public $sourcePath = '@developit/jcrop/assets';
+    public $sourcePath = '@emhome/jcrop/assets';
     public $css = [
         'css/jcrop.css'
     ];
@@ -23,8 +23,8 @@ class Asset extends AssetBundle {
      */
     public $depends = [
         'yii\web\JqueryAsset',
-        'developit\jcrop\JcropAsset',
-        'developit\jcrop\SimpleAjaxUploaderAsset',
+        'emhome\jcrop\JcropAsset',
+        'emhome\jcrop\SimpleAjaxUploaderAsset',
     ];
 
 }
