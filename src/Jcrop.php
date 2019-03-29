@@ -63,7 +63,7 @@ class Jcrop extends InputWidget {
         $view->registerJs('jQuery("#' . $this->options['id'] . '")
             .parent()
             .find(".new-photo-area")
-            .cropper(' . Json::encode($settings) . ', ' . $this->ration . ');', $view::POS_END);
+            .cropper(' . Json::encode($settings) . ', ' . $this->ratio . ');', $view::POS_END);
     }
 
     public function getRatio() {
