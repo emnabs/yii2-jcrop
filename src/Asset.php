@@ -6,7 +6,14 @@ use yii\web\AssetBundle;
 
 class Asset extends AssetBundle {
 
+    /**
+     * @inheritdoc
+     */
     public $sourcePath = '@emhome/jcrop/assets';
+
+    /**
+     * @inheritdoc
+     */
     public $css = [
         'css/jcrop.css'
     ];

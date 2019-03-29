@@ -11,14 +11,10 @@ use yii\widgets\InputWidget;
 class Jcrop extends InputWidget {
 
     public $uploadParameter = 'file';
-    public $width = 200;
+    public $width = 300;
     public $height = 200;
     public $uploadUrl;
-    public $maxSize = 2097152; // 2MB
-    public $thumbnailWidth = 300;
-    public $thumbnailHeight = 200;
-    public $cropAreaWidth = '100%';
-    public $cropAreaHeight = '30%';
+    public $maxSize = 2097152;
     public $extensions = 'jpeg, jpg, png, gif';
     public $onCompleteJcrop;
 
@@ -60,14 +56,21 @@ class Jcrop extends InputWidget {
             'size_error_text' => Yii::t('jcrop', 'File Size Error', ['size' => $this->maxSize / (1024 * 1024)]),
             'ext_error_text' => Yii::t('jcrop', 'File Extension Error', ['formats' => $this->extensions]),
             'accept' => 'image/*',
-            'aspectRatio' => 0.5,
         ];
         if ($this->onCompleteJcrop) {
             $settings['onCompleteJcrop'] = $this->onCompleteJcrop;
         }
-//        $view->registerJs('jQuery("#' . $this->options['id'] . '").parent().find(".new-photo-area").cropper(' . Json::encode($settings) . ', ' . $this->thumbnailWidth . ', ' . $this->thumbnailHeight . ');', $view::POS_READY);
-        $view->registerJs('jQuery("#' . $this->options['id'] . '").parent().find(".new-photo-area")
-            .cropper(' . Json::encode($settings) . ', ' . $this->thumbnailWidth . ', ' . $this->thumbnailHeight . ');', $view::POS_READY);
+        $view->registerJs('jQuery("#' . $this->options['id'] . '")
+            .parent()
+            .find(".new-photo-area")
+            .cropper(' . Json::encode($settings) . ', ' . $this->ration . ');', $view::POS_END);
+    }
+
+    public function getRatio() {
+        if ($this->height) {
+            return $this->width / $this->height;
+        }
+        return 1;
     }
 
     /**
